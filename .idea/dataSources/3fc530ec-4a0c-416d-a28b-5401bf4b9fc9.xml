@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.0">
+    <root id="1"/>
+    <schema id="2" parent="1" name="db">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="mysql"/>
+    <schema id="5" parent="1" name="performance_schema"/>
+    <schema id="6" parent="1" name="sys"/>
+    <table id="7" parent="2" name="address"/>
+    <table id="8" parent="2" name="db_bookinfo"/>
+    <table id="9" parent="2" name="member"/>
+    <table id="10" parent="2" name="student"/>
+    <routine id="11" parent="2" name="myshow">
+      <RoutineKind>procedure</RoutineKind>
+    </routine>
+    <routine id="12" parent="2" name="mysave">
+      <RoutineKind>procedure</RoutineKind>
+    </routine>
+    <routine id="13" parent="2" name="mydel">
+      <RoutineKind>procedure</RoutineKind>
+    </routine>
+    <routine id="14" parent="2" name="myupdate">
+      <RoutineKind>procedure</RoutineKind>
+    </routine>
+    <routine id="15" parent="2" name="cc">
+      <RoutineKind>procedure</RoutineKind>
+    </routine>
+    <routine id="16" parent="2" name="upd">
+      <RoutineKind>procedure</RoutineKind>
+    </routine>
+    <column id="17" parent="7" name="id">
+      <Position>1</Position>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="18" parent="7" name="title">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <key id="19" parent="7" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="20" parent="8" name="bid">
+      <Position>1</Position>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="21" parent="8" name="bname">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="22" parent="8" name="bprice">
+      <Position>3</Position>
+      <DataType>decimal(7,2)|0</DataType>
+    </column>
+    <key id="23" parent="8" name="PRIMARY">
+      <ColNames>bid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="24" parent="9" name="id">
+      <Position>1</Position>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="25" parent="9" name="name">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="26" parent="9" name="addressid">
+      <Position>3</Position>
+      <DataType>int(10) unsigned|0</DataType>
+    </column>
+    <key id="27" parent="9" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="28" parent="10" name="id">
+      <Position>1</Position>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="29" parent="10" name="name">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="30" parent="10" name="address">
+      <Position>3</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <key id="31" parent="10" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <argument id="32" parent="12" name="n">
+      <DataType>varchar(20)|0</DataType>
+    </argument>
+    <argument id="33" parent="12" name="p">
+      <DataType>decimal(6,2)|0</DataType>
+    </argument>
+    <argument id="34" parent="13" name="did">
+      <DataType>int(11)|0</DataType>
+    </argument>
+    <argument id="35" parent="14" name="did">
+      <DataType>int(11)|0</DataType>
+    </argument>
+    <argument id="36" parent="14" name="n">
+      <DataType>varchar(20)|0</DataType>
+    </argument>
+    <argument id="37" parent="14" name="p">
+      <DataType>decimal(6,2)|0</DataType>
+    </argument>
+    <argument id="38" parent="15" name="myc">
+      <ArgumentDirection>O</ArgumentDirection>
+      <DataType>int(11)|0</DataType>
+    </argument>
+    <argument id="39" parent="16" name="sid">
+      <DataType>int(11)|0</DataType>
+    </argument>
+    <argument id="40" parent="16" name="a">
+      <DataType>varchar(20)|0</DataType>
+    </argument>
+  </database-model>
+</dataSource>

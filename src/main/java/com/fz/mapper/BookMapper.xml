@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fz.mapper.BookMapper">
+    <insert id="save">
+        insert into db_bookinfo values(null,#{name},#{price});
+    </insert>
+
+    <select id="query" resultMap="mybook">
+        select * from  db_bookinfo
+    </select>
+
+    <delete id="mydel" statementType="CALLABLE" parameterType="int">
+        call mydel(#{id})
+    </delete>
+
+    <update id="myupdate" statementType="CALLABLE">
+        update db_bookinfo set bname=#{1},bprice=#{2} where bid=#{0}
+    </update>
+    <parameterMap type="java.util.Map" id="sss">
+        <parameter property="myc" mode="OUT" jdbcType="INTEGER" />
+    </parameterMap>
+    
+    <select id="getCount" statementType="CALLABLE" parameterMap="sss">
+        call cc(?)
+    </select>
+
+    <select id="show" resultMap="mybook" statementType="CALLABLE">
+        call myshow
+    </select>
+    <resultMap type="book" id="mybook">
+        <id column="bid" property="id"/>
+        <result column="bname" property="name"/>
+        <result column="bprice" property="price"/>
+    </resultMap>
+
+    <select id="page" resultMap="mybook">
+        select * from db_bookinfo limit #{0},#{1}
+    </select>
+</mapper>

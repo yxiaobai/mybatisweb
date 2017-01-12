@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fz.mapper.MemberMapper">
+
+    <resultMap id="mem" type="member">
+        <id column="id" property="id"></id>
+        <result property="account" column="account"></result>
+        <result property="pass" column="pass"></result>
+        <result property="name" column="name"></result>
+        <association property="address" javaType="address">
+            <id property="id" column="aid"></id>
+            <result property="name" column="aname"/>
+            <result property="phone" column="aphone"/>
+        </association>
+    </resultMap>
+
+    <resultMap id="m2" type="member">
+        <id column="id" property="id"/>
+        <result property="account" column="account"/>
+        <result property="pass" column="pass"/>
+        <result property="name" column="name"/>
+        <result property="address.id" column="aid"/>
+        <result property="address.name" column="aname"/>
+        <result property="address.phone" column="aphone"/>
+    </resultMap>
+
+    <resultMap id="aaa" type="address">
+        <result property="id" column="aid"/>
+        <result property="name" column="aname"/>
+        <result property="phone" column="aphone"/>
+    </resultMap>
+
+    <resultMap id="m3" type="member">
+        <id column="id" property="id"/>
+        <result property="account" column="account"/>
+        <result property="pass" column="pass"/>
+        <result property="name" column="name"/>
+        <association property="address" column="aid" resultMap="aaa" />
+    </resultMap>
+
+    <resultMap id="m4" type="member">
+        <id column="id" property="id"/>
+        <result property="account" column="account" />
+        <result property="name" column="name" />
+        <result property="pass" column="pass" />
+        <association property="address" column="aid" select="com.fz.mapper.AddressMapper.queryById" />
+    </resultMap>
+
+    <select id="queryById" parameterType="int" resultMap="m4">
+        select * from db_member m,db_address a where m.id=#{id} and m.aid=a.aid
+    </select>
+
+    <select id="query" resultType="HashMap">
+        select m.name,a.aname from db_member m,db_address a where m.aid=a.aid
+    </select>
+
+    <select id="queryAll" resultType="HashMap">
+        select m.name,a.aname from db_member m left JOIN db_address a on m.aid = a.aid
+    </select>
+</mapper>
