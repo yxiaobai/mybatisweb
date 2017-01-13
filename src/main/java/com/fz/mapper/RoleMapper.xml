@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fz.mapper.RoleMapper">
+    <resultMap id="rr" type="role">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <association property="user" column="uid" select="com.fz.mapper.UserMapper.findById"/>
+    </resultMap>
+
+    <!--
+    <select id="findByUserId" parameterType="int" resultType="role">
+        select * from db_role where uid=#{id}
+    </select>
+    -->
+    <select id="findByUserId" parameterType="int" resultMap="rr">
+        select * from db_role where uid=#{id}
+    </select>
+
+    <select id="findById" parameterType="int" resultMap="rr">
+        select * from db_role where id=#{id}
+    </select>
+
+</mapper>

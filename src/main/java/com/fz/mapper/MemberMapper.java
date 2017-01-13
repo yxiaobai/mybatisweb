@@ -10,6 +10,9 @@ import java.util.Map;
  */
 public interface MemberMapper {
     public Member queryById(int id);
+
+    public Member findById(int id);
+
     public List<Map<String,Object>> query();
     public List<Map<String,Object>> queryAll();
 }

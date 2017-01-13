@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+
 /**
  * Created by webrx on 2017/1/12 0012 8:54.
  */
@@ -18,4 +20,5 @@ public class Member {
     private String pass;
     private String name;
     private Address address;
+    private List<Order> orders;
 }

@@ -46,10 +46,19 @@
         <result property="name" column="name" />
         <result property="pass" column="pass" />
         <association property="address" column="aid" select="com.fz.mapper.AddressMapper.queryById" />
+        <collection property="orders" column="oid" ofType="order">
+            <id property="id" column="oid"/>
+            <result property="no" column="ono"/>
+            <result property="money" column="omoney"/>
+        </collection>
     </resultMap>
 
     <select id="queryById" parameterType="int" resultMap="m4">
-        select * from db_member m,db_address a where m.id=#{id} and m.aid=a.aid
+        select * from db_member m,db_address a,db_order o  where m.id=#{id} and m.aid=a.aid and o.omid=m.id
+    </select>
+
+    <select id="findById" parameterType="int" resultMap="m4">
+        select * from db_member m,db_order o  where m.id=#{id} and o.omid=m.id
     </select>
 
     <select id="query" resultType="HashMap">

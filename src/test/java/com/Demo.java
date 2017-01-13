@@ -2,15 +2,17 @@ package com;
 
 import com.fz.mapper.BookMapper;
 import com.fz.mapper.MemberMapper;
+import com.fz.mapper.RoleMapper;
 import com.fz.mapper.StudentMapper;
 import com.fz.model.Book;
+import com.fz.model.Member;
+import com.fz.model.Role;
 import com.fz.model.Student;
 import com.fz.mybatis.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by webrx on 2017/1/10 0010 8:44.
@@ -18,22 +20,41 @@ import java.util.Map;
 public class Demo {
 
     @Test
+    public void one2many(){
+        SqlSession s = MyBatisUtil.getSqlSession();
+        //UserMapper um = s.getMapper(UserMapper.class);
+        //System.out.println(um.findById(1));
+
+        RoleMapper rm = s.getMapper(RoleMapper.class);
+        Role r = rm.findById(2);
+        System.out.println(r.getName());
+        System.out.println(r.getUser());
+        s.commit();
+        s.close();
+    }
+
+
+    @Test
     public void oneone(){
         SqlSession s = MyBatisUtil.getSqlSession();
         MemberMapper mm = s.getMapper(MemberMapper.class);
-        //Member m = mm.queryById(1);
-        //System.out.println(m);
+        Member m1 = mm.findById(1);
+        Member m2 = mm.findById(2);
+        Member m3 = mm.findById(3);
+        System.out.println(m1);
+        System.out.println(m2);
+        System.out.println(m3);
 
         //AddressMapper am = s.getMapper(AddressMapper.class);
         //System.out.println(am.queryById(100));
 
 
-        List<Map<String,Object>> ls = mm.queryAll();
+      /*  List<Map<String,Object>> ls = mm.query();
         System.out.println(ls.size());
         for(Map<String,Object> m : ls){
             System.out.println(m.get("name"));
             System.out.println(m.get("aname"));
-        }
+        }*/
         s.commit();
         s.close();
     }
