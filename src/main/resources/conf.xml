@@ -4,6 +4,11 @@
 <configuration>
     <properties resource="db.properties"/>
 
+    <settings>
+        <setting name="logPrefix" value="dao."/>
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+
     <typeAliases>
         <package name="com.mybatis.model"></package>
     </typeAliases>
