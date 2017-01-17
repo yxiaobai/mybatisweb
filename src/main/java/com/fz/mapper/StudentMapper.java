@@ -11,6 +11,13 @@ import java.util.Map;
  * Created by webrx on 2017/1/10 0010 8:47.
  */
 public interface StudentMapper{
+
+    public int update(Map<String,Object> map);
+
+    public int delete(Map<String,Object> m);
+
+    public List<Student> search(Map<String,Object> map);
+
     public List<Student> query();
 
     @Select("select name from student")

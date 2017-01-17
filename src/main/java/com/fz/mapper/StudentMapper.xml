@@ -7,6 +7,42 @@
         select * from student
     </select>
 
+    <update id="update" parameterType="Map">
+        update student set name=#{name} where id in
+        <foreach item="a" collection="ids" open="(" separator="," close=")">
+            #{a}
+        </foreach>
+    </update>
+
+    <delete id="delete" parameterType="Map">
+        delete from student
+        <where>
+            <if test="ids!=null">
+                id in
+                <foreach item="did" collection="ids" open="(" separator="," close=")">
+                    #{did}
+                </foreach>
+            </if>
+            <if test="name!=null">
+                and name = #{name}
+            </if>
+            <if test="id!=null">
+                and id=#{id}
+            </if>
+        </where>
+    </delete>
+
+    <!--
+    <update id="update" parameterType="Map">
+        update student set name=#{name},address=#{address} where id=#{id}
+        update student
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name!=null">name=#{name},</if>
+            <if test="address!=null">address=#{address},</if>
+        </trim>
+        where id=#{id}
+    </update>-->
+
     <insert id="save" parameterType="student">
         insert into student values(null,#{name},#{address})
     </insert>
@@ -14,4 +50,50 @@
     <insert id="insert">
         insert into student values(null,#{0},#{1})
     </insert>
+
+    <select id="search" resultType="student" parameterType="Map">
+        select * from student
+        <!--
+        <where>
+            <if test="name!=null">
+                and name=#{name}
+            </if>
+            <if test="address!=null">
+                and address like #{address}
+            </if>
+        </where>
+        -->
+        <trim prefix="WHERE" prefixOverrides="AND |OR ">
+            <if test="name!=null">
+                name=#{name}
+            </if>
+            <if test="address!=null">
+                and address like #{address}
+            </if>
+        </trim>
+        order by id desc
+        <!--select * from student where 1=1-->
+        <!--
+        <if test="name!=null">
+            and name like #{name}
+        </if>
+        <if test="address!=null">
+            and address like #{address}
+        </if>
+        -->
+        <!--
+        <choose>
+            <when test="name!=null">
+                and name like #{name}
+            </when>
+            <when test="address!=null">
+                and address like #{address}
+            </when>
+            <otherwise>
+                and name like '李%'
+            </otherwise>
+        </choose>
+        -->
+
+    </select>
 </mapper>
