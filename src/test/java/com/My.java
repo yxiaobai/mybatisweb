@@ -9,9 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.util.List;
 
-/**
- * Created by webrx on 2017/1/17 0017 9:17.
- */
+
 @Slf4j
 public class My {
 
